@@ -98,6 +98,8 @@ static void endian_swap_group_desc(struct ext2_group_desc *gd) {
 status_t ext2_mount(bdev_t *dev, fscookie **cookie) {
     int err;
     int i;
+    puts("EARLY CALL!");
+    // logf("EARLY MOUNT");
 
     LTRACEF("dev %p\n", dev);
 
@@ -116,6 +118,8 @@ status_t ext2_mount(bdev_t *dev, fscookie **cookie) {
     /* see if the superblock is good */
     if (ext2->sb.s_magic != EXT2_SUPER_MAGIC) {
         err = -1;
+        puts("MAGIC BAD!");
+        // logf("MAGIC BAD!");
         return err;
     }
 

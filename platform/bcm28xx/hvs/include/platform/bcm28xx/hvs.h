@@ -212,7 +212,7 @@ extern int display_slot;
 extern volatile uint32_t* dlist_memory;
 extern const int scaling_kernel;
 
-//void hvs_add_plane(gfx_surface *fb, int x, int y, bool hflip);
+// void hvs_add_plane(gfx_surface *fb, int x, int y, bool hflip);
 //void hvs_add_plane_scaled(gfx_surface *fb, int x, int y, unsigned int width, unsigned int height, bool hflip);
 //void hvs_terminate_list(void);
 void hvs_wipe_displaylist(void);

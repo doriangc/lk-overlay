@@ -7,7 +7,7 @@
 #include <math.h>
 #include <platform/bcm28xx/clock.h>
 #include <platform/bcm28xx/cm.h>
-#include <platform/bcm28xx/hexdump.h>
+// #include <lib/hexdump/include/lib/hexdump.h>
 #include <platform/bcm28xx/hvs.h>
 #include <platform/bcm28xx/pll_read.h>
 #include <platform/bcm28xx/udelay.h>
@@ -132,7 +132,7 @@ int cmd_v3d_probe2(int argc, const console_cmd_args *argv) {
       for (uint32_t x=0; x < state.tilewidth; x++) {
         uint32_t slot = (uint32_t)(((uint32_t)state.tileAllocation) + (y * state.tilewidth + x) * slotSize);
         printf("tile x:%d y:%d\n", x, y);
-        hexdump_ram((void*)slot, slot, slotSize);
+        // hexdump_ram((void*)slot, slot, slotSize);
       }
     }
   }
@@ -412,7 +412,7 @@ static void v3d_allocate(void) {
   makeBinner(&state);
   s->frameA = gfx_create_surface(NULL, state.width, state.height, state.width, GFX_FORMAT_ARGB_8888);
   s->frameB = gfx_create_surface(NULL, state.width, state.height, state.width, GFX_FORMAT_ARGB_8888);;
-  MK_UNITY_LAYER(&state.layer, s->frameA, 40, 0, 0);
+  mk_unity_layer(&state.layer, s->frameA, 40, 0, 0);
   state.layer.name = "v3d";
   s->frameANext = true;
 

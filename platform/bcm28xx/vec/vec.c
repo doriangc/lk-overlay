@@ -10,13 +10,17 @@
 #include <platform/bcm28xx/power.h>
 #include <platform/bcm28xx/pv.h>
 #include <platform/bcm28xx/vec.h>
+// #include <platform/bcm28xx/hvs-dance/include/dance.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
+void dance_start(gfx_surface* fbin, int hvs_channel);
+
 #ifdef WITH_TGA
 #include <lib/tga.h>
-#include "librerpi-logo.h"
+// #include "librerpi-logo.h"
+#include "pi-logo.h"
 //#include "ResD1_720X480.h"
 //#include <dance.h>
 #endif
@@ -67,7 +71,7 @@ static void vec_init(uint level) {
   *REG32(VEC_SOFT_RESET) = 1;
   *REG32(VEC_WSE_CONTROL) = 0;
 
-  *REG32(VEC_SCHPH) = 0x28;
+  *REG32(VEC_SCHPH) = 0x28; // Color subcarrier phase
   *REG32(VEC_CLMP0_START) = 0xac;
   *REG32(VEC_CLMP0_END) = 0xac;
   *REG32(VEC_CONFIG2) = VEC_CONFIG2_UV_DIG_DIS | VEC_CONFIG2_RGB_DIG_DIS;
@@ -92,13 +96,13 @@ static void vec_init(uint level) {
       *REG32(VEC_CONFIG0) = VEC_CONFIG0_PAL_BDGHI_STD;
       *REG32(VEC_CONFIG1) = VEC_CONFIG1_C_CVBS_CVBS;
       break;
-	case pal60:
-	  *REG32(VEC_CONFIG0) = VEC_CONFIG0_PAL_M_STD;
-	  *REG32(VEC_CONFIG1) = VEC_CONFIG1_C_CVBS_CVBS | VEC_CONFIG1_CUSTOM_FREQ;
-	  *REG32(VEC_FREQ3_2) = 0x2a09;
-	  *REG32(VEC_FREQ1_0) = 0x8acb;
-	  break;
-	case palm:
+    case pal60:
+      *REG32(VEC_CONFIG0) = VEC_CONFIG0_PAL_M_STD;
+      *REG32(VEC_CONFIG1) = VEC_CONFIG1_C_CVBS_CVBS | VEC_CONFIG1_CUSTOM_FREQ;
+      *REG32(VEC_FREQ3_2) = 0x2a09;
+      *REG32(VEC_FREQ1_0) = 0x8acb;
+      break;
+    case palm:
       *REG32(VEC_CONFIG0) = VEC_CONFIG0_PAL_BDGHI_STD;
       *REG32(VEC_CONFIG1) = VEC_CONFIG1_C_CVBS_CVBS | VEC_CONFIG1_CUSTOM_FREQ;
       *REG32(VEC_FREQ3_2) = 0x223b;
@@ -148,7 +152,7 @@ static void vec_init(uint level) {
   hvs_set_background_color(channel, 0x0);
 
 #ifdef WITH_TGA
-  //logo = tga_decode(pilogo, sizeof(pilogo), GFX_FORMAT_ARGB_8888);
+  logo = tga_decode(pilogo, sizeof(pilogo), GFX_FORMAT_ARGB_8888);
 
   if (false) {
     hvs_layer *new_layer = malloc(sizeof(hvs_layer));
@@ -162,7 +166,7 @@ static void vec_init(uint level) {
     hvs_dlist_add(channel, new_layer);
   }
 
-  //dance_start(logo, 1);
+  // dance_start(logo, 1);
 #endif
 }
 

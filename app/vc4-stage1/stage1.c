@@ -71,7 +71,7 @@ static void mount_rootfs(void) {
   bdev_t *sd = rpi_sdhost_init();
   printf("%p\n", sd);
   partition_publish("sdhost", 0);
-  //fs_mount("/boot", "fat32", "sdhostp0");
+  fs_mount("/boot", "fat32", "sdhostp0");
   ret = fs_mount("/root", "ext2", "sdhostp1");
   if (ret) {
     printf("mount failure: %d\n", ret);
@@ -82,6 +82,7 @@ static void mount_rootfs(void) {
 static void load_stage2(void) {
   int ret;
 
+  printf("HELLO THERE!\n");
   mount_rootfs();
 
   filehandle *stage2;
@@ -193,7 +194,7 @@ static void stage1_init(const struct app_descriptor *app) {
 static void stage1_entry(const struct app_descriptor *app, void *args) {
   int ret;
   puts("stage1 entry\n");
-  mount_rootfs();
+  // mount_rootfs();
 
   /*lua_State *L = lua_newstate(&lua_allocator, NULL);
   register_globals(L);

@@ -39,7 +39,7 @@ struct item {
 
 #define ITEMS 580
 struct item items[ITEMS];
-uint32_t sprite_limit = 1;
+uint32_t sprite_limit = 10;
 int delay = 1;
 
 int32_t screen_width, screen_height;

@@ -7,10 +7,12 @@ MODULES += \
 	platform/bcm28xx/rpi-ddr2/autoram \
 	app/shell \
 	lib/debugcommands \
-	#lib/fs/ext2 \
-	#app/mountroot \
+	lib/gfx \
+	platform/bcm28xx/hvs-dance \
+	# platform/bcm28xx/pll \
+	lib/tga \
 
-GRID := 1
+GRID := 0
 CONSOLE := 0
 PRIMARY_VIDEO := vec
 

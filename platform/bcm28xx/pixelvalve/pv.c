@@ -66,6 +66,21 @@ unsigned int getPvIrq(int pvnr) {
 }
 
 void setup_pixelvalve(const struct pv_timings *t, int pvnr) {
+  // struct pixel_valve {
+  //   volatile uint32_t c; // BCM_PERIPH_BASE_VIRT + 0x807000
+  //   volatile uint32_t vc; // BCM_PERIPH_BASE_VIRT + 0x807004
+  //   volatile uint32_t vsyncd_even; // BCM_PERIPH_BASE_VIRT + 0x807008
+  //   volatile uint32_t horza; // BCM_PERIPH_BASE_VIRT + 0x80700C
+  //   volatile uint32_t horzb; // BCM_PERIPH_BASE_VIRT + 0x807010
+  //   volatile uint32_t verta; // BCM_PERIPH_BASE_VIRT + 0x807014
+  //   volatile uint32_t vertb; // BCM_PERIPH_BASE_VIRT + 0x807018
+  //   volatile uint32_t verta_even; // BCM_PERIPH_BASE_VIRT + 0x80701C
+  //   volatile uint32_t vertb_even; // BCM_PERIPH_BASE_VIRT + 0x807020
+  //   volatile uint32_t int_enable; // BCM_PERIPH_BASE_VIRT + 0x807024
+  //   volatile uint32_t int_status; // BCM_PERIPH_BASE_VIRT + 0x807028
+  //   volatile uint32_t h_active; // BCM_PERIPH_BASE_VIRT + 0x80702C
+  // };
+
   struct pixel_valve *rawpv = getPvAddr(pvnr);
   printf("setup_pixelvalve, pvnr=%d, %dx%d\n", pvnr, t->hactive, t->vactive);
 
@@ -96,6 +111,7 @@ void setup_pixelvalve(const struct pv_timings *t, int pvnr) {
   rawpv->vc = BV(0) | // video enable
             BV(1)| // continous
             (t->interlaced ? BV(4) : 0);
+  rawpv->vsyncd_even = 0; // May not be necessary
 
   rawpv->h_active = t->hactive;
 
@@ -117,6 +133,7 @@ void setup_pixelvalve(const struct pv_timings *t, int pvnr) {
             BV(12) | // wait for h-start
             BV(13) | // trigger underflow
             BV(14) | // clear at start
+            BV(0) | // enable
             FIFO_LEVEL(fifo_len_bytes);
 }
 
