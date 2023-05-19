@@ -2,7 +2,7 @@ LOCAL_DIR := $(GET_LOCAL_DIR)
 
 MODULE := $(LOCAL_DIR)
 
-TOOLCHAIN_PREFIX := "/home/dorian/w/vc4-toolchain/prefix/bin/vc4-elf-"
+TOOLCHAIN_PREFIX := "/home/dorian/vc4-toolchain/prefix/bin/vc4-elf-"
 
 $(BUILDDIR)/system-onesegment.ld: $(LOCAL_DIR)/start.ld
 	@echo generating $@
@@ -11,7 +11,7 @@ $(BUILDDIR)/system-onesegment.ld: $(LOCAL_DIR)/start.ld
 	cp $< $@
 
 # TODO, fix the linker flags
-ARCH_LDFLAGS += -L/home/dorian/w/vc4-toolchain/prefix/lib/gcc/vc4-elf/6.2.1
+ARCH_LDFLAGS += -L/home/dorian/vc4-toolchain/prefix/lib/gcc/vc4-elf/6.2.1
 ARCH_CFLAGS += -fstack-usage -funroll-loops -Os
 
 MODULE_SRCS += \

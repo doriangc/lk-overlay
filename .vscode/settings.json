@@ -1,0 +1,10 @@
+{
+    "files.associations": {
+        "cm.h": "c",
+        "app.h": "c",
+        "types.h": "c",
+        "features.h": "c",
+        "bcm28xx.h": "c"
+    },
+    "C_Cpp.errorSquiggles": "enabled"
+}

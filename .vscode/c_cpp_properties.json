@@ -1,0 +1,22 @@
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "/home/dorian/vc4-toolchain/prefix/lib/gcc/vc4-elf/6.2.1/include",
+                "/home/dorian/vc4-toolchain/prefix/lib/gcc/vc4-elf/6.2.1/include-fixed",
+                "/home/dorian/vc4-toolchain/prefix/lib/gcc/vc4-elf/6.2.1/../../../../vc4-elf/include"
+            ],
+            "defines": [
+                "MMIO_BASE_VIRT=0xe0000000U"
+            ],
+            "compilerPath": "/usr/bin/gcc",
+            "cStandard": "c17",
+            "cppStandard": "c++14",
+            "intelliSenseMode": "linux-gcc-arm64",
+            "configurationProvider": "ms-vscode.makefile-tools"
+        }
+    ],
+    "version": 4
+}

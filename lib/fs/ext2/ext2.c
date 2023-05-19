@@ -98,7 +98,7 @@ static void endian_swap_group_desc(struct ext2_group_desc *gd) {
 status_t ext2_mount(bdev_t *dev, fscookie **cookie) {
     int err;
     int i;
-    puts("EARLY CALL!");
+    puts("EARLY CALL! Test1234");
     // logf("EARLY MOUNT");
 
     LTRACEF("dev %p\n", dev);

@@ -17,5 +17,5 @@ MODULES += \
 # MODULES += lib/fasterconsole
 
 GLOBAL_DEFINES += PRIMARY_HVS_CHANNEL=1
-# MODULES += platform/bcm28xx/vec
-MODULES += platform/bcm28xx/vc4-hdmi
+MODULES += platform/bcm28xx/vec
+# MODULES += platform/bcm28xx/vc4-hdmi
