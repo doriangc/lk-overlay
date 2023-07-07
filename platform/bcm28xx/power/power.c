@@ -21,6 +21,19 @@ STATIC_COMMAND("pm_usb_on", "enable usb power domain", &cmd_pm_usb_on)
 #endif
 STATIC_COMMAND_END(pm);
 
+#define PM_HDMI_RSTDR 1 << 19
+#define PM_HDMI_CTRLEN 1
+#define PM_HDMI_LDOPD 1 << 1
+
+void power_up_hdmi(void) {
+  *REG32(PM_HDMI) |= PM_HDMI_RSTDR;
+  *REG32(PM_HDMI) |= PM_HDMI_CTRLEN;
+  *REG32(PM_HDMI) &= ~PM_HDMI_LDOPD;
+  // usleep_range(100, 200);
+  udelay(150 * 1000);
+  *REG32(PM_HDMI) &= ~PM_HDMI_RSTDR;
+}
+
 #ifdef ARCH_VPU
 void power_up_image(void) {
   puts("image domain starting...");

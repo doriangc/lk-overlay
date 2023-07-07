@@ -9,13 +9,13 @@ MODULES += \
 	lib/cksum \
 	lib/debugcommands \
 	lib/gfx \
-	# platform/bcm28xx/hvs-dance \
-	platform/bcm28xx/otp \
-	lib/tga
+	lib/tga \
+	platform/bcm28xx/hvs-dance \
+	# platform/bcm28xx/otp
 
 # MODULES += lib/gfxconsole
 # MODULES += lib/fasterconsole
 
 GLOBAL_DEFINES += PRIMARY_HVS_CHANNEL=1
-MODULES += platform/bcm28xx/vec
-# MODULES += platform/bcm28xx/vc4-hdmi
+# MODULES += platform/bcm28xx/vec
+MODULES += platform/bcm28xx/vc4-hdmi

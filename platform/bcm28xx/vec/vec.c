@@ -47,6 +47,8 @@ static void draw_background_grid(void) {
 
 static void vec_init(uint level) {
   int channel = 1; // on VC4, the VEC is hard-wired to hvs channel 1
+  // Confusingly, channel 1 actually refers to pixelvalve 2
+
   int width;
   int height;
 

@@ -4,7 +4,10 @@
         "app.h": "c",
         "types.h": "c",
         "features.h": "c",
-        "bcm28xx.h": "c"
+        "bcm28xx.h": "c",
+        "arch.h": "c",
+        "platform.h": "c",
+        "a2w.h": "c"
     },
     "C_Cpp.errorSquiggles": "enabled"
 }
